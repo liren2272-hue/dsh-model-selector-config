@@ -1,0 +1,12 @@
+# dsh-model-selector-config —— 模型选择器配置插件（宿主侧入口）。
+#
+# 本插件不预先声明任何 provider / 模型；它在运行时：
+#   1) 经 webServer 注册 /api/model-selector-config/* 路由，把当前各 provider 的
+#      模型清单（含 reasoning 可选档 + 默认档）读给设置卡片；
+#   2) 接收卡片提交的「可见性 + 默认思考等级」改动，经 settings 服务热写回
+#      llm-pi-ai / workbuddy 等 provider entry（volatile 字段，无需重启）。
+#
+# 这里只注册插件自身这个 bundle entry，让 DSH 装载宿主代码 lib/index.mjs。
+- insert:
+    - id: model-selector-config
+      name: '@local/dsh-model-selector-config'
