@@ -1,13 +1,15 @@
 {
   "name": "@local/dsh-model-selector-config",
-  "version": "1.0.0",
+  "version": "2.2.0",
+  "icon": "./icon.svg",
   "private": true,
   "type": "module",
-  "description": "模型选择器配置：控制任意 provider 的模型可见性，并设定每模型/每 provider 的默认思考等级（热生效，无需重启）。",
+  "description": "模型选择器配置：与模型选择器同源显示全部平台，逐模型独立控制可见性与默认思考等级（热生效，无需重启）。",
   "main": "lib/index.mjs",
   "exports": {
     ".": "./lib/index.mjs",
     "./client": "./lib/client/index.js",
+    "./icon": "./icon.svg",
     "./cordis.patch.yml": "./cordis.patch.yml",
     "./package.json": "./package.json"
   },

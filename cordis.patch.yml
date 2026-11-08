@@ -1,10 +1,13 @@
 # dsh-model-selector-config —— 模型选择器配置插件（宿主侧入口）。
 #
 # 本插件不预先声明任何 provider / 模型；它在运行时：
-#   1) 经 webServer 注册 /api/model-selector-config/* 路由，把当前各 provider 的
-#      模型清单（含 reasoning 可选档 + 默认档）读给设置卡片；
-#   2) 接收卡片提交的「可见性 + 默认思考等级」改动，经 settings 服务热写回
-#      llm-pi-ai / workbuddy 等 provider entry（volatile 字段，无需重启）。
+#   1) 经 webServer 注册 /api/model-selector-config/* 路由，枚举与「模型选择器」
+#      同源的 llm 服务（listProviders/listModels/resolveModelInfo），把全部已注册
+#      平台（含 Qoder / WorkBuddy 等动态注册平台）的模型清单读给设置卡片；
+#   2) 接收卡片提交的「可见性 + 默认思考等级」改动，写入插件自有 state.json，
+#      再经共享 llm 服务实例的薄覆盖热生效（listModels 过滤隐藏模型、
+#      resolveModelInfoFor 注入每模型独立默认档；改动即时生效，无需重启）；
+#   3) 不改写任何 adapter 声明，故与插件注册的新平台天然一致、可扩展。
 #
 # 这里只注册插件自身这个 bundle entry，让 DSH 装载宿主代码 lib/index.mjs。
 - insert:
