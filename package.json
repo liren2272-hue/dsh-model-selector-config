@@ -1,6 +1,6 @@
 {
   "name": "@local/dsh-model-selector-config",
-  "version": "2.2.0",
+  "version": "2.4.0",
   "icon": "./icon.svg",
   "private": true,
   "type": "module",
